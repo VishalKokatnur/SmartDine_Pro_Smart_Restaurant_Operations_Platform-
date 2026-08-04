@@ -1,0 +1,76 @@
+.purchase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.purchase-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.purchase-field input,
+.purchase-field select {
+  width: 100%;
+}
+
+.purchase-section {
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+.purchase-section > * + * {
+  margin-top: 14px;
+}
+
+.purchase-section .purchase-field-row,
+.purchase-section form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.purchase-section .purchase-field-row .purchase-field,
+.purchase-section form .purchase-field {
+  flex: 1 1 180px;
+  min-width: 160px;
+}
+
+.purchase-section .purchase-field-row .button-field,
+.purchase-section form .button-field {
+  flex: 0 0 auto;
+}
+
+.purchase-section form .button-field .save-purchase-btn {
+  white-space: nowrap;
+}
+
+.section-help {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: -4px;
+  margin-bottom: 10px;
+}
+
+.purchase-table-wrapper {
+  overflow-x: auto;
+}
+
+.purchase-summary {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 16px 20px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.purchase-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}

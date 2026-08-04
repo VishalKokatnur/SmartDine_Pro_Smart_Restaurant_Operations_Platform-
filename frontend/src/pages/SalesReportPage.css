@@ -1,0 +1,74 @@
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.filter-box {
+  padding: 18px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: end;
+  width: 100%;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-box {
+  padding: 20px;
+}
+
+.summary-box h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.summary-box .value,
+.green-price {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.payment-card {
+  padding: 16px 18px;
+}
+
+.loading-box {
+  padding: 60px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.print-title {
+  display: none;
+}
+
+@media print {
+  .print-title {
+    display: block;
+    font-family: var(--font-serif);
+    margin-bottom: 16px;
+  }
+}
