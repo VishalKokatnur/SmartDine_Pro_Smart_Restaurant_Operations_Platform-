@@ -170,6 +170,7 @@ class WaiterCall(models.Model):
         ("Waiter", "Waiter"),
     ]
 
+
     CALL_STATUS = [
         ("Pending", "Pending"),
         ("Resolved", "Resolved"),
