@@ -1,0 +1,2 @@
+# SmartDine_Pro_Smart_Restaurant_Operations_Platform-
+SmartDine Pro is a full-stack Hotel &amp; Restaurant Management System built using Django REST Framework. It restaurant and hotel operations with features including menu management, table reservations, order processing, kitchen display (KOT), billing, inventory &amp; purchase management, room booking, customer management, role-based authentication, 
