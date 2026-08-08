@@ -1,0 +1,260 @@
+/* =====================================================
+   GLOBAL THEME SYSTEM
+===================================================== */
+
+:root {
+  /* Light Mode */
+  --bg-main: #f5f7f6;
+  --bg-card: #ffffff;
+  --bg-card-secondary: #f8faf9;
+
+  --text-main: #17201d;
+  --text-secondary: #64706b;
+  --text-muted: #8a948f;
+
+  --border-color: #e1e7e4;
+  --input-bg: #ffffff;
+
+  --primary: #00796b;
+  --primary-hover: #00695c;
+
+  --accent: #d6a637;
+  --accent-light: #fff8df;
+
+  --success-bg: #dcfce7;
+  --success-text: #15803d;
+
+  --warning-bg: #fef3c7;
+  --warning-text: #b45309;
+
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --sidebar-bg: #ffffff;
+  --navbar-bg: #ffffff;
+
+  --table-header-bg: #f3f6f4;
+  --table-row-hover: #f8faf9;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+[data-theme="dark"] {
+  --bg-main: #10120f;
+  --bg-card: #181b17;
+  --bg-card-secondary: #20241f;
+
+  --text-main: #f5f5f0;
+  --text-secondary: #b8beb8;
+  --text-muted: #858d85;
+
+  --border-color: #343a33;
+  --input-bg: #20241f;
+
+  --primary: #008f7d;
+  --primary-hover: #00a991;
+
+  --accent: #e0b64f;
+  --accent-light: #302a18;
+
+  --success-bg: #143c27;
+  --success-text: #86efac;
+
+  --warning-bg: #453817;
+  --warning-text: #facc15;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --sidebar-bg: #151814;
+  --navbar-bg: #181b17;
+
+  --table-header-bg: #222720;
+  --table-row-hover: #242a23;
+}
+
+
+/* =====================================================
+   GLOBAL BODY
+===================================================== */
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+
+/* =====================================================
+   GLOBAL ELEMENTS
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+button {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* =====================================================
+   COMMON PAGE CONTAINERS
+===================================================== */
+
+.page-box,
+.card,
+.dashboard-card,
+.content-card,
+.panel,
+.table-card,
+.form-card {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+
+/* =====================================================
+   COMMON HEADINGS
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-main);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+
+/* =====================================================
+   COMMON INPUTS
+===================================================== */
+
+input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.15);
+}
+
+
+/* =====================================================
+   COMMON TABLES
+===================================================== */
+
+table {
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+thead {
+  background: var(--table-header-bg);
+}
+
+th {
+  color: var(--text-main);
+}
+
+td {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+tbody tr:hover {
+  background: var(--table-row-hover);
+}
+
+
+/* =====================================================
+   COMMON LINKS
+===================================================== */
+
+a {
+  color: var(--primary);
+}
+
+
+/* =====================================================
+   THEME TRANSITION
+===================================================== */
+
+body,
+.sidebar,
+.navbar,
+.page-box,
+.card,
+.dashboard-card,
+.content-card,
+.panel,
+input,
+select,
+textarea,
+table,
+thead,
+tbody,
+tr,
+button {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}

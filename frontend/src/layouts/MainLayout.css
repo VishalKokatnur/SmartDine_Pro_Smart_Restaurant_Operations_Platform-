@@ -1,0 +1,44 @@
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f2e8;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.sidebar {
+  width: 290px;
+  background: linear-gradient(180deg, #062f25, #101828);
+  padding: 35px 24px;
+  color: white;
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h2 {
+  color: #d6b35a;
+  font-size: 30px;
+  margin-bottom: 45px;
+  font-weight: 800;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff7e6;
+  text-decoration: none;
+  padding: 15px 18px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(214, 179, 90, 0.2);
+  color: #d6b35a;
+  transform: translateX(7px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}

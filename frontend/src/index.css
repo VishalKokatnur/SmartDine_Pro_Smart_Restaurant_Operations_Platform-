@@ -1,0 +1,644 @@
+/* =====================================================
+   SMARTDINE PRO — GLOBAL DESIGN SYSTEM
+   Elegant fine-dining aesthetic (serif + warm gold)
+===================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* =====================================================
+   DESIGN TOKENS — LIGHT (DEFAULT)
+===================================================== */
+
+:root,
+[data-theme="light"] {
+  --bg-main: #f7f4ee;
+  --bg-card: #ffffff;
+  --bg-card-secondary: #f2ede3;
+  --bg-secondary: #f2ede3;
+
+  --text-main: #23201a;
+  --text-secondary: #635c4f;
+  --text-muted: #948c78;
+
+  --border-color: #e7e0d0;
+
+  --primary: #b8863a;
+  --primary-hover: #a3752f;
+  --primary-soft: #f7ecd6;
+
+  --accent: #b8863a;
+  --accent-light: #f7ecd6;
+
+  --success: #1f8a4c;
+  --success-bg: #e3f4e9;
+  --success-text: #1f8a4c;
+
+  --warning: #b8863a;
+  --warning-bg: #fbf1de;
+  --warning-text: #9a6b12;
+
+  --danger: #b3372c;
+  --danger-hover: #96291f;
+
+  --info: #2f6d8f;
+
+  --input-bg: #ffffff;
+
+  --shadow-color: rgba(35, 28, 14, 0.08);
+  --shadow: 0 1px 2px rgba(35, 28, 14, 0.04), 0 8px 24px rgba(35, 28, 14, 0.06);
+  --shadow-lg: 0 20px 48px rgba(35, 28, 14, 0.14);
+
+  --overlay-bg: rgba(20, 16, 8, 0.45);
+
+  --table-header-bg: #f2ede3;
+  --table-row-hover: #faf7f0;
+}
+
+/* =====================================================
+   DESIGN TOKENS — DARK
+===================================================== */
+
+[data-theme="dark"] {
+  --bg-main: #14130f;
+  --bg-card: #1b1914;
+  --bg-card-secondary: #221f18;
+  --bg-secondary: #221f18;
+
+  --text-main: #f2ede2;
+  --text-secondary: #bcb3a0;
+  --text-muted: #85795f;
+
+  --border-color: #322c20;
+
+  --primary: #d8ab5c;
+  --primary-hover: #e6bd72;
+  --primary-soft: #382d18;
+
+  --accent: #d8ab5c;
+  --accent-light: #382d18;
+
+  --success: #4ade80;
+  --success-bg: #16301f;
+  --success-text: #4ade80;
+
+  --warning: #d8ab5c;
+  --warning-bg: #332a15;
+  --warning-text: #e6bd72;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+
+  --info: #60a5fa;
+
+  --input-bg: #201d17;
+
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+
+  --table-header-bg: #221f18;
+  --table-row-hover: #221f18;
+}
+
+/* =====================================================
+   TYPE SCALE
+===================================================== */
+
+:root {
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+
+/* =====================================================
+   BASE ELEMENTS
+===================================================== */
+
+html {
+  background: var(--bg-main);
+  transition: background-color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+input,
+select,
+textarea {
+  background: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page-box,
+.tables-page-box,
+.purchase-page-box,
+.billing-page-box,
+.low-stock-page,
+.sales-report-page,
+.bill-history-page {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 560px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+/* =====================================================
+   SHARED UTILITY CLASSES
+===================================================== */
+
+.eyebrow,
+.section-label,
+.bill-section-label {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   SHARED PAGE SHELL
+   (used by MenuPage, TablesPage, BillingPage, PurchasePage,
+   LowStockPage, SalesReportPage, BillHistoryPage, etc.)
+===================================================== */
+
+.page-box,
+.tables-page-box,
+.purchase-page-box,
+.billing-page-box,
+.low-stock-page,
+.sales-report-page,
+.bill-history-page {
+  min-height: 100vh;
+  background: transparent;
+  color: var(--text-main);
+  padding: 6px 4px 40px;
+}
+
+.page-header,
+.low-stock-header,
+.sales-header,
+.bill-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1,
+.low-stock-header h1,
+.sales-header h1,
+.bill-hero h1,
+.bill-hero h2 {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.page-header p,
+.low-stock-header p,
+.sales-header p,
+.bill-hero p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   SHARED CARD / PANEL
+===================================================== */
+
+.card,
+.dashboard-card,
+.content-card,
+.panel,
+.table-card,
+.form-card,
+.stock-table-card,
+.stock-summary-card,
+.report-card,
+.summary-box,
+.filter-box,
+.payment-card,
+.bill-summary-card,
+.bill-filter-panel,
+.bill-table-panel,
+.purchase-section,
+.menu-category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* =====================================================
+   SHARED BUTTONS
+===================================================== */
+
+.btn,
+.add-btn,
+.save-btn,
+.save-bill-btn,
+.save-purchase-btn,
+.table-save-btn,
+.tq-primary-btn,
+.apply-btn,
+.bill-apply-btn,
+.purchase-btn,
+.smartdine-login-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover,
+.add-btn:hover,
+.save-btn:hover,
+.save-bill-btn:hover,
+.save-purchase-btn:hover,
+.table-save-btn:hover,
+.tq-primary-btn:hover,
+.apply-btn:hover,
+.bill-apply-btn:hover,
+.purchase-btn:hover,
+.smartdine-login-submit:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.edit-btn,
+.refresh-btn,
+.refresh-billing-btn,
+.refresh-stock-btn,
+.print-bill-btn,
+.print-report-btn,
+.reset-btn,
+.table-cancel-btn,
+.tq-secondary-btn,
+.tq-view-btn,
+.bill-clear-btn,
+.bill-refresh-btn,
+.bill-view-btn,
+.small-purchase-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-secondary);
+  color: var(--text-main);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover,
+.refresh-btn:hover,
+.refresh-billing-btn:hover,
+.refresh-stock-btn:hover,
+.print-bill-btn:hover,
+.print-report-btn:hover,
+.reset-btn:hover,
+.table-cancel-btn:hover,
+.tq-secondary-btn:hover,
+.tq-view-btn:hover,
+.bill-clear-btn:hover,
+.bill-refresh-btn:hover,
+.bill-view-btn:hover,
+.small-purchase-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.delete-btn,
+.tq-close-btn,
+.sdp-appsmenu-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid rgba(179, 55, 44, 0.28);
+  border-radius: var(--radius-sm);
+  background: rgba(179, 55, 44, 0.07);
+  color: var(--danger);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover,
+.tq-close-btn:hover,
+.sdp-appsmenu-logout:hover {
+  background: var(--danger);
+  color: #ffffff;
+  border-color: var(--danger);
+}
+
+/* =====================================================
+   SHARED TABLE
+===================================================== */
+
+table,
+.premium-table,
+.bill-premium-table,
+.stock-alert-table,
+.report-table,
+.bill-detail-table,
+.purchase-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 13.5px;
+}
+
+thead {
+  background: var(--table-header-bg);
+}
+
+th {
+  text-align: left;
+  padding: 13px 16px;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+}
+
+td {
+  padding: 14px 16px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+  background: var(--table-row-hover);
+}
+
+/* =====================================================
+   SHARED FORM FIELDS
+===================================================== */
+
+.button-field,
+.billing-field,
+.table-field,
+.purchase-field,
+.bill-filter-field,
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* =====================================================
+   SHARED BADGES
+===================================================== */
+
+.available,
+.bill-paid-badge,
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.not-available,
+.warning,
+.danger {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.danger {
+  background: rgba(179, 55, 44, 0.12);
+  color: var(--danger);
+}
+
+.role-badge,
+.gold-pill,
+.partner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--bg-card-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   THEME TOGGLE BUTTON
+===================================================== */
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+/* =====================================================
+   THEME TRANSITION (applies everywhere)
+===================================================== */
+
+body,
+#root,
+.restaurant-dashboard,
+.restaurant-navbar,
+.page-box,
+table,
+input,
+select,
+textarea,
+button,
+div {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

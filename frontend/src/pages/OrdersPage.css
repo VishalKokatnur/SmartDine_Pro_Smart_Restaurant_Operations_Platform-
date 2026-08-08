@@ -1,0 +1,609 @@
+/* =====================================================
+   ORDERS / POS PAGE (royal-* classes)
+===================================================== */
+
+.royal-order-page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.royal-pos-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 18px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-color);
+}
+
+.royal-pos-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.royal-pos-brand > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+.royal-pos-brand h2 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  margin: 0;
+}
+
+.royal-pos-brand p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.royal-pos-sidebar > button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.royal-pos-sidebar > button:hover {
+  background: var(--bg-card-secondary);
+  color: var(--text-main);
+}
+
+.royal-pos-sidebar > button.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* =====================================================
+   MAIN AREA
+===================================================== */
+
+.royal-pos-main {
+  padding: 24px 32px 48px;
+  overflow-x: hidden;
+}
+
+.royal-pos-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.royal-mini-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.royal-pos-topbar h1 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  margin: 0 0 4px;
+}
+
+.royal-pos-topbar p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.royal-pos-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.royal-pos-actions button {
+  padding: 10px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.royal-pos-actions button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* =====================================================
+   CATEGORY TABS
+===================================================== */
+
+.royal-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.royal-category-tabs button {
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.royal-category-tabs button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.royal-category-tabs button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* =====================================================
+   PRODUCT HEADER / SEARCH
+===================================================== */
+
+.royal-product-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.royal-product-header h2 {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  margin: 0 0 2px;
+}
+
+.royal-product-header p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.royal-product-header input {
+  width: 280px;
+  max-width: 100%;
+}
+
+/* =====================================================
+   PRODUCT GRID + ORDER PANEL LAYOUT
+===================================================== */
+
+.royal-pos-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.royal-empty-box {
+  grid-column: 1 / -1;
+  padding: 40px;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   ORDER PANEL (right sidebar)
+===================================================== */
+
+.royal-order-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.royal-panel-card {
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.royal-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.royal-panel-head h2 {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin: 0;
+}
+
+.royal-panel-head button {
+  padding: 5px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.royal-panel-head button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.royal-small-empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: var(--bg-card-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.royal-queue-card,
+.royal-preparing-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: var(--bg-card-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.royal-queue-card:last-child,
+.royal-preparing-card:last-child {
+  margin-bottom: 0;
+}
+
+.royal-queue-card span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.royal-queue-card strong {
+  font-size: 13.5px;
+}
+
+.royal-queue-card em,
+.royal-status {
+  font-style: normal;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.royal-preparing-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.royal-preparing-card p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.royal-preparing-card span {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* status colors, shared by queue badge + table badge */
+.pending { background: var(--warning-bg); color: var(--warning-text); }
+.preparing { background: var(--primary-soft); color: var(--primary); }
+.ready { background: var(--success-bg); color: var(--success-text); }
+.served { background: var(--success-bg); color: var(--success-text); }
+.billed { background: var(--bg-card-secondary); color: var(--text-muted); }
+.cancelled { background: var(--danger-bg, #4a1f1f); color: var(--danger-text, #ff8080); }
+
+/* =====================================================
+   CREATE ORDER FORM
+===================================================== */
+
+.royal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.royal-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.royal-field select {
+  width: 100%;
+}
+
+.royal-selected-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.royal-selected-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-card-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.royal-selected-item h4 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.royal-selected-item p {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.royal-selected-item button {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.royal-selected-item button:hover {
+  color: var(--danger-text, #ff8080);
+}
+
+.royal-total-box {
+  padding: 14px;
+  margin-bottom: 14px;
+  background: var(--bg-card-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.royal-total-box > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.royal-total-box .grand {
+  padding-top: 8px;
+  margin-top: 6px;
+  margin-bottom: 0;
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.royal-action-row {
+  display: flex;
+  gap: 10px;
+}
+
+.royal-action-row button {
+  flex: 1;
+  padding: 11px;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.royal-action-row button:hover {
+  background: var(--primary-hover);
+}
+
+.royal-action-row button.danger {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.royal-action-row button.danger:hover {
+  border-color: #ff8080;
+  color: #ff8080;
+}
+
+/* =====================================================
+   ORDERS TABLE
+===================================================== */
+
+.royal-orders-table-section {
+  margin-top: 32px;
+}
+
+.royal-section-title {
+  margin-bottom: 16px;
+}
+
+.royal-section-title span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.royal-section-title h2 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin: 0;
+}
+
+.royal-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.royal-orders-table th {
+  text-align: left;
+  padding: 14px 16px;
+  background: var(--table-header-bg);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.royal-orders-table td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.royal-orders-table td p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.royal-table-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.royal-table-actions button {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.royal-table-actions button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.royal-table-actions button.served {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.royal-table-actions button.delete:hover {
+  border-color: #ff8080;
+  color: #ff8080;
+}
+
+.royal-locked {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+  .royal-pos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .royal-order-page {
+    grid-template-columns: 1fr;
+  }
+  .royal-pos-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .royal-pos-brand {
+    width: 100%;
+  }
+  .royal-pos-sidebar > button {
+    width: auto;
+  }
+  .royal-pos-main {
+    padding: 20px;
+  }
+}

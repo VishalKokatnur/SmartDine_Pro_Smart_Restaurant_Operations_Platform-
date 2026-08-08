@@ -1,0 +1,36 @@
+.table-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:20px;
+    margin-top:30px;
+}
+
+.table-card{
+    padding:25px;
+    border-radius:18px;
+    color:#fff;
+    text-align:center;
+    font-weight:600;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.table-card:hover{
+    transform:translateY(-6px);
+}
+
+.table-card.available{
+    background:#22c55e;
+}
+
+.table-card.occupied{
+    background:#ef4444;
+}
+
+.table-card.billing{
+    background:#f59e0b;
+}
+
+.table-card.reserved{
+    background:#3b82f6;
+}

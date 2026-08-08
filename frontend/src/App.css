@@ -1,0 +1,402 @@
+/* =====================================================
+   SMARTDINE PRO - GLOBAL STYLES
+   DARK / LIGHT THEME
+===================================================== */
+
+
+/* =====================================================
+   DEFAULT DARK THEME
+===================================================== */
+
+:root {
+  --bg-main: #11130f;
+
+  --bg-card: #1a1c16;
+
+  --bg-card-secondary: #22241c;
+
+  --text-main: #f5f5f5;
+
+  --text-secondary: #b8b8b8;
+
+  --text-muted: #92958a;
+
+  --border-color: #33352b;
+
+  --primary: #d8b45a;
+
+  --primary-hover: #f1c75b;
+
+  --input-bg: #24261f;
+
+  --success: #22c55e;
+
+  --warning: #f59e0b;
+
+  --danger: #ef4444;
+
+  --info: #3b82f6;
+
+  --shadow:
+    0 8px 25px rgba(0, 0, 0, 0.35);
+
+  --shadow-lg:
+    0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =====================================================
+   LIGHT THEME
+===================================================== */
+
+[data-theme="light"] {
+  --bg-main: #f5f6f8;
+
+  --bg-card: #ffffff;
+
+  --bg-card-secondary: #eef0f3;
+
+  --text-main: #202124;
+
+  --text-secondary: #5f6368;
+
+  --text-muted: #73777d;
+
+  --border-color: #d9dce1;
+
+  --primary: #a87916;
+
+  --primary-hover: #c08b1d;
+
+  --input-bg: #ffffff;
+
+  --success: #15803d;
+
+  --warning: #b45309;
+
+  --danger: #dc2626;
+
+  --info: #2563eb;
+
+  --shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg:
+    0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+
+  min-width: 320px;
+
+  background: var(--bg-main);
+
+  color: var(--text-main);
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   ROOT APP
+===================================================== */
+
+#root {
+  min-height: 100vh;
+
+  background: var(--bg-main);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+input,
+select,
+textarea {
+  background: var(--input-bg);
+
+  color: var(--text-main);
+
+  border-color: var(--border-color);
+}
+
+
+/* =====================================================
+   INPUT PLACEHOLDER
+===================================================== */
+
+::placeholder {
+  color: var(--text-muted);
+
+  opacity: 0.8;
+}
+
+
+/* =====================================================
+   SELECTION
+===================================================== */
+
+::selection {
+  background: var(--primary);
+
+  color: #ffffff;
+}
+
+
+/* =====================================================
+   SCROLLBAR - DARK MODE
+===================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+
+  height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+
+/* =====================================================
+   THEME BUTTON
+===================================================== */
+
+.theme-toggle-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 9px 15px;
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 8px;
+
+  background: var(--bg-card);
+
+  color: var(--text-main);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.theme-toggle-btn:hover {
+  background: var(--primary);
+
+  color: #ffffff;
+
+  border-color: var(--primary);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.theme-toggle-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   COMMON THEME CLASSES
+===================================================== */
+
+.theme-bg {
+  background: var(--bg-main);
+
+  color: var(--text-main);
+}
+
+
+.theme-card {
+  background: var(--bg-card);
+
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+
+  box-shadow: var(--shadow);
+}
+
+
+.theme-secondary {
+  background: var(--bg-card-secondary);
+
+  color: var(--text-main);
+}
+
+
+.theme-border {
+  border-color: var(--border-color);
+}
+
+
+.theme-text {
+  color: var(--text-main);
+}
+
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+
+/* =====================================================
+   APP TRANSITION
+===================================================== */
+
+.restaurant-dashboard,
+.restaurant-navbar,
+.page-box,
+.card,
+.dashboard-card,
+.table-form,
+.premium-table,
+.modal,
+.tq-modal,
+input,
+select,
+textarea,
+button {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   DEFAULT LINK STYLE
+===================================================== */
+
+a {
+  color: var(--primary);
+
+  transition:
+    color 0.2s ease;
+}
+
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+
+/* =====================================================
+   FOCUS ACCESSIBILITY
+===================================================== */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary);
+
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   TABLE DEFAULT THEME
+===================================================== */
+
+table {
+  color: var(--text-main);
+}
+
+
+th,
+td {
+  border-color: var(--border-color);
+}
+
+
+/* =====================================================
+   RESPONSIVE GLOBAL SPACING
+===================================================== */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,511 @@
+.smartdine-drag-page {
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+}
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.smartdine-landing-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 56px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.smartdine-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.smartdine-nav-brand > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.smartdine-nav-brand h2 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.smartdine-nav-brand h2::before {
+  content: "◆ ";
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.smartdine-nav-brand p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* POS / Kitchen / Billing / Inventory pills */
+.smartdine-landing-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.smartdine-landing-nav nav button {
+  padding: 9px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.smartdine-landing-nav nav button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.smartdine-nav-login-btn {
+  padding: 10px 22px;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.smartdine-nav-login-btn:hover {
+  background: var(--primary-hover);
+}
+
+.smartdine-landing-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 56px 80px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.smartdine-hero-section {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  padding: 64px 0 56px;
+}
+
+.smartdine-mini-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.smartdine-hero-content h1 {
+  font-family: var(--font-serif);
+  font-size: 46px;
+  line-height: 1.12;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.smartdine-hero-content p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+.smartdine-hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.smartdine-hero-actions button {
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14.5px;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.smartdine-hero-actions button:hover {
+  background: var(--primary-hover);
+}
+
+.smartdine-hero-actions button.outline {
+  background: transparent;
+  color: var(--primary);
+}
+
+.smartdine-hero-actions button.outline:hover {
+  background: var(--primary-soft);
+}
+
+.smartdine-hero-stats {
+  display: flex;
+  gap: 36px;
+}
+
+.smartdine-hero-stats > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.smartdine-hero-stats strong {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  color: var(--primary);
+}
+
+.smartdine-hero-stats span {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
+
+.smartdine-login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 32px;
+}
+
+.smartdine-card-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.smartdine-card-top h2 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.smartdine-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.smartdine-field label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.smartdine-field input {
+  width: 100%;
+}
+
+.smartdine-password-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.smartdine-password-row input {
+  width: 100%;
+  padding-right: 64px;
+}
+
+.smartdine-password-row button {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  border: none;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.smartdine-password-row button:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.smartdine-login-submit {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.smartdine-role-box {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-secondary);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* =====================================================
+   MARQUEE
+===================================================== */
+
+.smartdine-marquee {
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.smartdine-section {
+  padding: 64px 0;
+}
+
+.smartdine-section-title {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.smartdine-section-title h2 {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.smartdine-section-title p {
+  color: var(--text-muted);
+}
+
+/* =====================================================
+   FEATURE GRID
+===================================================== */
+
+.smartdine-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.smartdine-feature-card {
+  padding: 26px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 2px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.smartdine-feature-card:hover {
+  border-left-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.smartdine-feature-card h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.smartdine-feature-card p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+
+/* =====================================================
+   MENU / FLOW SECTION
+===================================================== */
+
+.smartdine-menu-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.smartdine-flow-card {
+  display: inline-flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+}
+
+/* =====================================================
+   PRICING
+===================================================== */
+
+.smartdine-pricing-section {
+  padding: 64px 0;
+}
+
+.smartdine-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.smartdine-module-grid > div {
+  padding: 26px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.smartdine-module-grid h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--primary);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 960px) {
+  .smartdine-hero-section {
+    grid-template-columns: 1fr;
+  }
+  .smartdine-landing-nav,
+  .smartdine-landing-main {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .smartdine-hero-content h1 {
+    font-size: 32px;
+  }
+  .smartdine-hero-actions {
+    flex-direction: column;
+  }
+  .smartdine-hero-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+.smartdine-login-logo{
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.smartdine-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius:100%;
+}
+
+.smartdine-card-top h2{
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.smartdine-card-top p{
+    margin-top: 8px;
+    color: #666;
+    font-size: 16px;
+}
+
+
+.smartdine-flow-card{
+    width: 800px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    margin-top: 40px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.smartdine-flow-card div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.smartdine-flow-card span{
+    font-size: 18px;
+    font-weight: 700;
+    color: #c58c2d;
+}
+
+.smartdine-flow-card strong{
+    margin-top: 8px;
+    font-size: 18px;
+}
+.smartdine-menu-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 20px;
+}

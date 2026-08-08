@@ -1,0 +1,211 @@
+.table-search-input {
+  width: 260px;
+  max-width: 100%;
+}
+
+.table-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.table-form .table-field {
+  flex: 1 1 180px;
+  min-width: 160px;
+}
+
+.table-form .table-field input,
+.table-form .table-field select {
+  width: 100%;
+}
+
+.table-form .button-field {
+  flex: 0 0 auto;
+}
+
+.table-save-btn,
+.table-cancel-btn {
+  white-space: nowrap;
+}
+
+.table-warning-box {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.qr-code-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qr-icon {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* QR Modal */
+
+.tq-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.tq-modal {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 360px;
+  max-width: 92vw;
+  padding: 24px;
+  text-align: center;
+}
+
+.tq-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.tq-modal-head h3 {
+  font-family: var(--font-serif);
+  margin: 0;
+}
+
+.tq-qr-image {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin: 0 auto 12px;
+  background: #fff;
+}
+
+.tq-qr-caption {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.tq-qr-link {
+  display: block;
+  font-size: 12px;
+  color: var(--primary);
+  word-break: break-all;
+  margin-bottom: 16px;
+}
+
+.tq-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.restaurant-floor {
+    margin: 25px 0;
+}
+
+.restaurant-floor h2 {
+    margin-bottom: 18px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+    gap: 14px;
+}
+
+.table-card {
+    height: 90px;
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .25s ease;
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+
+.table-card:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 14px 28px rgba(0,0,0,.22);
+}
+
+.table-card h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.table-card p {
+    margin: 4px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,.95);
+}
+
+.table-card small {
+    font-size: 11px;
+    color: rgba(255,255,255,.85);
+}
+
+/* Status Colors */
+
+.table-card.available {
+    background: linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.table-card.occupied {
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.table-card.billing {
+    background: linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.table-card.reserved {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.table-card.cleaning {
+    background: linear-gradient(135deg,#64748b,#475569);
+}
+
+.table-legend {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.table-legend span {
+    padding: 5px 12px;
+    border-radius: 30px;
+    background: rgba(0,0,0,.05);
+    font-size: 12px;
+    font-weight: 600;
+}
