@@ -366,45 +366,45 @@ function LoginPage() {
         </section>
 
         <section className="smartdine-menu-section">
-          <div>
-            <span className="smartdine-mini-pill">Fast restaurant workflow</span>
-            <h2>Your entire restaurant flow in one dashboard.</h2>
-            <p>
-              SmartDine Pro keeps waiter, kitchen, cashier and manager work
-              connected so your restaurant runs smoothly during rush hours.
-            </p>
+  <span className="smartdine-flow-badge">
+    <i className="ti ti-bolt"></i> Fast restaurant workflow
+  </span>
 
-            <ul>
-              <li>Waiter creates order</li>
-              <li>Chef prepares and marks ready</li>
-              <li>Cashier generates GST bill</li>
-              <li>Inventory updates from purchases and recipes</li>
-            </ul>
-          </div>
+  <div className="smartdine-flow-heading">
+    Your entire restaurant flow<br />in <span>one dashboard</span>
+  </div>
 
-          <div className="smartdine-flow-card">
-            <div>
-              <span>01</span>
-              <strong>Table Order</strong>
-            </div>
+  <p className="smartdine-flow-desc">
+    SmartDine Pro keeps waiter, kitchen, cashier and manager work
+    connected so your restaurant runs smoothly during rush hours.
+  </p>
 
-            <div>
-              <span>02</span>
-              <strong>Kitchen Queue</strong>
-            </div>
+  <div className="smartdine-flow-checklist">
+    <div className="smartdine-flow-check-item">
+      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
+      <span>Waiter creates order</span>
+    </div>
+    <div className="smartdine-flow-check-item">
+      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
+      <span>Chef prepares and marks ready</span>
+    </div>
+    <div className="smartdine-flow-check-item">
+      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
+      <span>Cashier generates GST bill</span>
+    </div>
+    <div className="smartdine-flow-check-item">
+      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
+      <span>Inventory updates from purchases and recipes</span>
+    </div>
+  </div>
 
-            <div>
-              <span>03</span>
-              <strong>Billing Counter</strong>
-            </div>
-
-            <div>
-              <span>04</span>
-              <strong>Sales Report</strong>
-            </div>
-          </div>
-        </section>
-
+  <div className="smartdine-flow-card">
+    <div><span>1</span><strong>Table order</strong></div>
+    <div><span>2</span><strong>Kitchen queue</strong></div>
+    <div><span>3</span><strong>Billing counter</strong></div>
+    <div><span>4</span><strong>Sales report</strong></div>
+  </div>
+</section>
         <section className="smartdine-pricing-section">
           <div className="smartdine-section-title">
             <span>Software modules</span>
