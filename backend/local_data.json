@@ -1,0 +1,840 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Admin",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Cashier",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Chef",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Manager",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Waiter",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$js2I8ZKUnNAWFf38WbmuLk$P8U6YZhhW6KnSdzJlsQ3kSmX/LubairbqqJWjKZVRVs=",
+    "last_login": "2026-08-11T05:40:18.907Z",
+    "is_superuser": true,
+    "username": "admin01",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-11T05:33:55.563Z",
+    "groups": [
+      [
+        "Admin"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$15eC09ynyDftma6HKJYuo0$gcPbbudE1NYdjMCRp/mpKVwhFJgUpUOYJOFH37Fo1qU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "cashier1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-11T06:02:28.783Z",
+    "groups": [
+      [
+        "Cashier"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$2GwPnmFGpw5XIhPs8m7EFK$9hPQdu9RUZTeg+8nLZT2oBgcxG4CDL6GWr9tlWVozB8=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-11T06:06:18.626Z",
+    "groups": [
+      [
+        "Admin"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$jkc6bm45lE4hoW0zUEWiU3$ilyeEl3Viqn73AA4FcewaXXDwUCXiJbtJ0ZhX9jCZos=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "chef1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-11T06:06:18.631Z",
+    "groups": [
+      [
+        "Chef"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Bvn8XgezVmTswMFMmA5DR9$BfCRw59ODzYiiL47idcudbL8sAbjCvPdl0sm/8Mv7l4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-11T06:06:18.636Z",
+    "groups": [
+      [
+        "Manager"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$WsRMelXsEtOaLUWRAaZnsj$xUaT1bew9Sf4mM9/DSx0tXHlWNv2ZEkf5oic8lVpLFU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "waiter1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-11T06:06:18.644Z",
+    "groups": [
+      [
+        "Waiter"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 1,
+  "fields": {
+    "name": "Boast",
+    "category": "liquid",
+    "price": "40.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 2,
+  "fields": {
+    "name": "Idli",
+    "category": "Breakfast",
+    "price": "50.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 3,
+  "fields": {
+    "name": "Masala Dosa",
+    "category": "Breakfast",
+    "price": "90.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 4,
+  "fields": {
+    "name": "Plain Dosa",
+    "category": "Breakfast",
+    "price": "70.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 5,
+  "fields": {
+    "name": "Poha",
+    "category": "Breakfast",
+    "price": "60.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 6,
+  "fields": {
+    "name": "Upma",
+    "category": "Breakfast",
+    "price": "60.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 7,
+  "fields": {
+    "name": "Medu Vada",
+    "category": "Breakfast",
+    "price": "55.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 8,
+  "fields": {
+    "name": "Uttapam",
+    "category": "Breakfast",
+    "price": "85.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 9,
+  "fields": {
+    "name": "Bread Omelette",
+    "category": "Breakfast",
+    "price": "70.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 10,
+  "fields": {
+    "name": "Paneer Tikka",
+    "category": "Starters",
+    "price": "220.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 11,
+  "fields": {
+    "name": "Chicken Wings",
+    "category": "Starters",
+    "price": "250.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 12,
+  "fields": {
+    "name": "Veg Spring Rolls",
+    "category": "Starters",
+    "price": "180.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 13,
+  "fields": {
+    "name": "Chilli Paneer",
+    "category": "Starters",
+    "price": "210.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 14,
+  "fields": {
+    "name": "Chicken 65",
+    "category": "Starters",
+    "price": "240.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 15,
+  "fields": {
+    "name": "Veg Manchurian",
+    "category": "Starters",
+    "price": "190.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 16,
+  "fields": {
+    "name": "Hara Bhara Kabab",
+    "category": "Starters",
+    "price": "200.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 17,
+  "fields": {
+    "name": "Fish Fingers",
+    "category": "Starters",
+    "price": "260.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 18,
+  "fields": {
+    "name": "Tomato Soup",
+    "category": "Soups",
+    "price": "120.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 19,
+  "fields": {
+    "name": "Sweet Corn Soup",
+    "category": "Soups",
+    "price": "130.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 20,
+  "fields": {
+    "name": "Hot & Sour Soup",
+    "category": "Soups",
+    "price": "140.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 21,
+  "fields": {
+    "name": "Chicken Clear Soup",
+    "category": "Soups",
+    "price": "150.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 22,
+  "fields": {
+    "name": "Cream of Mushroom Soup",
+    "category": "Soups",
+    "price": "150.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 23,
+  "fields": {
+    "name": "Veg Biryani",
+    "category": "Main Course",
+    "price": "220.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 24,
+  "fields": {
+    "name": "Chicken Biryani",
+    "category": "Main Course",
+    "price": "280.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 25,
+  "fields": {
+    "name": "Paneer Butter Masala",
+    "category": "Main Course",
+    "price": "260.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 26,
+  "fields": {
+    "name": "Dal Tadka",
+    "category": "Main Course",
+    "price": "180.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 27,
+  "fields": {
+    "name": "Butter Chicken",
+    "category": "Main Course",
+    "price": "320.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 28,
+  "fields": {
+    "name": "Chana Masala",
+    "category": "Main Course",
+    "price": "190.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 29,
+  "fields": {
+    "name": "Palak Paneer",
+    "category": "Main Course",
+    "price": "240.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 30,
+  "fields": {
+    "name": "Malai Kofta",
+    "category": "Main Course",
+    "price": "250.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 31,
+  "fields": {
+    "name": "Egg Curry",
+    "category": "Main Course",
+    "price": "200.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 32,
+  "fields": {
+    "name": "Mutton Curry",
+    "category": "Main Course",
+    "price": "380.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 33,
+  "fields": {
+    "name": "Butter Naan",
+    "category": "Breads",
+    "price": "60.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 34,
+  "fields": {
+    "name": "Garlic Naan",
+    "category": "Breads",
+    "price": "70.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 35,
+  "fields": {
+    "name": "Tandoori Roti",
+    "category": "Breads",
+    "price": "40.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 36,
+  "fields": {
+    "name": "Lachha Paratha",
+    "category": "Breads",
+    "price": "65.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 37,
+  "fields": {
+    "name": "Missi Roti",
+    "category": "Breads",
+    "price": "55.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 38,
+  "fields": {
+    "name": "Kulcha",
+    "category": "Breads",
+    "price": "65.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 39,
+  "fields": {
+    "name": "Jeera Rice",
+    "category": "Rice",
+    "price": "150.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 40,
+  "fields": {
+    "name": "Steamed Rice",
+    "category": "Rice",
+    "price": "120.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 41,
+  "fields": {
+    "name": "Veg Pulao",
+    "category": "Rice",
+    "price": "180.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 42,
+  "fields": {
+    "name": "Curd Rice",
+    "category": "Rice",
+    "price": "140.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 43,
+  "fields": {
+    "name": "Lemon Rice",
+    "category": "Rice",
+    "price": "150.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 44,
+  "fields": {
+    "name": "Veg Thali",
+    "category": "Lunch Specials",
+    "price": "280.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 45,
+  "fields": {
+    "name": "Non-Veg Thali",
+    "category": "Lunch Specials",
+    "price": "350.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 46,
+  "fields": {
+    "name": "Rajma Chawal",
+    "category": "Lunch Specials",
+    "price": "190.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 47,
+  "fields": {
+    "name": "Kadhi Chawal",
+    "category": "Lunch Specials",
+    "price": "180.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 48,
+  "fields": {
+    "name": "Chole Bhature",
+    "category": "Lunch Specials",
+    "price": "200.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 49,
+  "fields": {
+    "name": "Tandoori Chicken",
+    "category": "Dinner Specials",
+    "price": "320.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 50,
+  "fields": {
+    "name": "Fish Curry",
+    "category": "Dinner Specials",
+    "price": "300.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 51,
+  "fields": {
+    "name": "Mutton Rogan Josh",
+    "category": "Dinner Specials",
+    "price": "400.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 52,
+  "fields": {
+    "name": "Paneer Lababdar",
+    "category": "Dinner Specials",
+    "price": "260.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 53,
+  "fields": {
+    "name": "Veg Kolhapuri",
+    "category": "Dinner Specials",
+    "price": "220.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 54,
+  "fields": {
+    "name": "Gulab Jamun",
+    "category": "Desserts",
+    "price": "120.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 55,
+  "fields": {
+    "name": "Brownie with Ice Cream",
+    "category": "Desserts",
+    "price": "220.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 56,
+  "fields": {
+    "name": "Rasmalai",
+    "category": "Desserts",
+    "price": "140.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 57,
+  "fields": {
+    "name": "Gajar Halwa",
+    "category": "Desserts",
+    "price": "150.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 58,
+  "fields": {
+    "name": "Kheer",
+    "category": "Desserts",
+    "price": "130.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 59,
+  "fields": {
+    "name": "Fresh Lime Soda",
+    "category": "Beverages",
+    "price": "60.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 60,
+  "fields": {
+    "name": "Cold Coffee",
+    "category": "Beverages",
+    "price": "130.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 61,
+  "fields": {
+    "name": "Masala Tea",
+    "category": "Beverages",
+    "price": "40.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 62,
+  "fields": {
+    "name": "Mango Lassi",
+    "category": "Beverages",
+    "price": "100.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 63,
+  "fields": {
+    "name": "Buttermilk",
+    "category": "Beverages",
+    "price": "40.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.menuitem",
+  "pk": 64,
+  "fields": {
+    "name": "Filter Coffee",
+    "category": "Beverages",
+    "price": "60.00",
+    "available": true
+  }
+},
+{
+  "model": "restaurant.restauranttable",
+  "pk": 1,
+  "fields": {
+    "table_number": "Table 7",
+    "capacity": 10,
+    "status": "Available"
+  }
+},
+{
+  "model": "restaurant.customer",
+  "pk": 1,
+  "fields": {
+    "name": "VISHAL BHEEMANAPPA KOKATNUR",
+    "phone": "7483251136",
+    "email": "vishalkokatnur96@gmail.com",
+    "address": "Gyang bowdi neharu nagar",
+    "loyalty_points": 0,
+    "birthday": null,
+    "anniversary": null,
+    "created_at": "2026-08-11T07:56:37.356Z"
+  }
+},
+{
+  "model": "employees.employee",
+  "pk": 1,
+  "fields": {
+    "name": "Vishal Kokatnur",
+    "phone": "7483251136",
+    "email": "vishalkokatnur96@gmail.com",
+    "role": "Manager",
+    "salary": "100000.00",
+    "shift_time": "morning",
+    "joining_date": "2026-08-11",
+    "is_active": true
+  }
+}
+]
