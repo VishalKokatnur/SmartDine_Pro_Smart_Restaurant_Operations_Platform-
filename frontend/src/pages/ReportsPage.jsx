@@ -28,11 +28,11 @@ function ReportsPage() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/restaurant/bills/")
+      .get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/bills/")
       .then((res) => setBills(res.data));
 
     axios
-      .get("http://127.0.0.1:8000/api/restaurant/orders/")
+      .get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/orders/")
       .then((res) => setOrders(res.data));
   }, []);
 

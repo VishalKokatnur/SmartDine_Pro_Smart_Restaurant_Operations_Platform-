@@ -16,7 +16,7 @@ function LowStockPage() {
       setLoading(true);
 
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/inventory/low-stock/"
+        "https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/low-stock/"
       );
 
       setItems(response.data);

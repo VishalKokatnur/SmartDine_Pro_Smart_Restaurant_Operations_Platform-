@@ -3,8 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./CustomerMenuPage.css";
-
-const API_BASE = "http://192.168.31.234:8000/api/restaurant";
+const API_BASE = "https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant";
 function CustomerMenuPage() {
   const { tableId: urlTableId } = useParams();
 

@@ -44,7 +44,7 @@ function DashboardPage() {
       setLoading(true);
 
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/reports/dashboard/"
+        "https://smartdine-pro-smart-restaurant.onrender.com/api/reports/dashboard/"
       );
 
       setDashboard({

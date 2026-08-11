@@ -6,7 +6,7 @@ function TableHeatMapPage() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/tables/")
+      .get("https://smartdine-pro-smart-restaurant.onrender.com/api/tables/")
       .then((res) => setTables(res.data))
       .catch((err) => console.log(err));
   }, []);

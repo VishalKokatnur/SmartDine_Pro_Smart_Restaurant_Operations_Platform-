@@ -13,7 +13,7 @@ function InventoryPage() {
   }, []);
 
   const fetchInventory = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/api/inventory/items/");
+    const res = await axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/items/");
     setItems(res.data);
   };
 

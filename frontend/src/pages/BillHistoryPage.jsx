@@ -17,7 +17,7 @@ function BillHistoryPage() {
       setLoading(true);
 
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/restaurant/bills/"
+        "https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/bills/"
       );
 
       setBills(Array.isArray(response.data) ? response.data : []);
@@ -42,7 +42,7 @@ function BillHistoryPage() {
     if (date) params.append("date", date);
 
     const response = await axios.get(
-      `http://127.0.0.1:8000/api/restaurant/bills/?${params.toString()}`
+      `https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/bills/?${params.toString()}`
     );
 
     setBills(Array.isArray(response.data) ? response.data : []);

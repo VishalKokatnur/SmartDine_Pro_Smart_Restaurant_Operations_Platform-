@@ -20,7 +20,7 @@ function TablesPage() {
   const [qrTable, setQrTable] = useState(null);
   const [qrLarge, setQrLarge] = useState(false);
 
-  const API_URL = "http://127.0.0.1:8000/api/restaurant";
+  const API_URL = "https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant";
 
   useEffect(() => {
     fetchTables();
@@ -219,7 +219,7 @@ function TablesPage() {
   };
 
   const getOrderLink = (table) => {
-  return `http://192.168.31.234:3000/order/${table.id}`;
+    return `https://smartdinepro-frontend.onrender.com/order/${table.id}`;
 };
 
   /*

@@ -18,9 +18,9 @@ function KitchenPage() {
   const fetchKitchenData = async () => {
     try {
       const [orderRes, menuRes, tableRes] = await Promise.all([
-        axios.get("http://127.0.0.1:8000/api/restaurant/kitchen-orders/"),
-        axios.get("http://127.0.0.1:8000/api/restaurant/menu-items/"),
-        axios.get("http://127.0.0.1:8000/api/restaurant/tables/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/kitchen-orders/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/menu-items/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/tables/"),
       ]);
 
       setOrders(orderRes.data);
@@ -72,7 +72,7 @@ function KitchenPage() {
       setLoadingId(order.id);
 
       await axios.patch(
-        `http://127.0.0.1:8000/api/restaurant/kitchen-orders/${order.id}/`,
+        `https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/kitchen-orders/${order.id}/`,
         {
           status: newStatus,
         }

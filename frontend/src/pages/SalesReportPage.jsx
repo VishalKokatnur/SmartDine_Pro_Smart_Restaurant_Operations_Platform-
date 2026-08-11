@@ -97,7 +97,7 @@ function SalesReportPage() {
       }
 
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/reports/sales/?${params.toString()}`
+        `https://smartdine-pro-smart-restaurant.onrender.com/api/reports/sales/?${params.toString()}`
       );
 
       const safeReport = normalizeReport(response.data);

@@ -48,9 +48,9 @@ function PurchasePage() {
   const fetchAllData = async () => {
     try {
       const [inventoryRes, menuRes, recipeRes] = await Promise.all([
-        axios.get("http://127.0.0.1:8000/api/inventory/items/"),
-        axios.get("http://127.0.0.1:8000/api/restaurant/menu-items/"),
-        axios.get("http://127.0.0.1:8000/api/inventory/recipe-items/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/items/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/restaurant/menu-items/"),
+        axios.get("https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/recipe-items/"),
       ]);
 
       setInventoryItems(inventoryRes.data);
@@ -169,7 +169,7 @@ function PurchasePage() {
         unit_price: Number(newItem.unit_price || 0),
       };
 
-      await axios.post("http://127.0.0.1:8000/api/inventory/items/", payload);
+      await axios.post("https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/items/", payload);
 
       alert("Inventory item added successfully");
 
@@ -257,7 +257,7 @@ function PurchasePage() {
       setLoading(true);
 
       for (const row of validRows) {
-        await axios.post("http://127.0.0.1:8000/api/purchase/restock/", {
+        await axios.post("https://smartdine-pro-smart-restaurant.onrender.com/api/purchase/restock/", {
           inventory_item: Number(row.inventory_item),
           quantity: Number(row.quantity),
           unit_price: Number(row.unit_price),
@@ -326,7 +326,7 @@ function PurchasePage() {
     try {
       setLoading(true);
 
-      await axios.post("http://127.0.0.1:8000/api/inventory/recipe-items/", {
+      await axios.post("https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/recipe-items/", {
         menu_item: Number(recipeForm.menu_item),
         inventory_item: Number(recipeForm.inventory_item),
         quantity_used: Number(recipeForm.quantity_required),
@@ -356,7 +356,7 @@ function PurchasePage() {
 
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/api/inventory/recipe-items/${recipeId}/`
+        `https://smartdine-pro-smart-restaurant.onrender.com/api/inventory/recipe-items/${recipeId}/`
       );
 
       alert("Recipe ingredient deleted successfully");

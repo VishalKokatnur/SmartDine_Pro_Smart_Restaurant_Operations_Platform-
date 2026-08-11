@@ -3,8 +3,13 @@ import axios from "axios";
 import "./LoginPage.css";
 import vkLogo from "../assets/vk-logo.png";
 
+// Render backend API
+const LOGIN_API =
+  "https://smartdine-pro-smart-restaurant.onrender.com/api/token/";
+
 function LoginPage() {
   const scrollRef = useRef(null);
+
   const dragRef = useRef({
     active: false,
     startY: 0,
@@ -16,12 +21,11 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const LOGIN_API = "http://127.0.0.1:8000/api/token/";
-
   const getRoleRedirectPath = (role) => {
     if (role === "Chef") return "/kitchen";
     if (role === "Cashier") return "/billing";
     if (role === "Waiter") return "/orders";
+
     return "/dashboard";
   };
 
@@ -32,6 +36,8 @@ function LoginPage() {
 
     if (blockedElement) return;
 
+    if (!scrollRef.current) return;
+
     dragRef.current.active = true;
     dragRef.current.startY = e.pageY;
     dragRef.current.scrollTop = scrollRef.current.scrollTop;
@@ -40,12 +46,14 @@ function LoginPage() {
   };
 
   const handleMouseMove = (e) => {
-    if (!dragRef.current.active) return;
+    if (!dragRef.current.active || !scrollRef.current) return;
 
     e.preventDefault();
 
     const moveY = e.pageY - dragRef.current.startY;
-    scrollRef.current.scrollTop = dragRef.current.scrollTop - moveY;
+
+    scrollRef.current.scrollTop =
+      dragRef.current.scrollTop - moveY;
   };
 
   const stopDrag = () => {
@@ -57,7 +65,9 @@ function LoginPage() {
   };
 
   const scrollToLogin = () => {
-    const loginCard = document.getElementById("smartdine-login-card");
+    const loginCard = document.getElementById(
+      "smartdine-login-card"
+    );
 
     if (loginCard) {
       loginCard.scrollIntoView({
@@ -83,37 +93,68 @@ function LoginPage() {
     try {
       setLoading(true);
 
-      const response = await axios.post(LOGIN_API, {
-        username,
-        password,
-      });
+      console.log("Sending login request to:", LOGIN_API);
+
+      const response = await axios.post(
+        LOGIN_API,
+        {
+          username: username.trim(),
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = response.data || {};
 
-      const accessToken =
-        data.access || data.access_token || data.token || data.jwt;
+      console.log("Login response:", data);
 
-      const refreshToken = data.refresh || data.refresh_token || "";
+      /*
+       * Django Simple JWT normally returns:
+       *
+       * {
+       *   "refresh": "...",
+       *   "access": "..."
+       * }
+       *
+       * Your backend may also return role/user information.
+       */
+
+      const accessToken =
+        data.access ||
+        data.access_token ||
+        data.token ||
+        data.jwt;
+
+      const refreshToken =
+        data.refresh ||
+        data.refresh_token ||
+        "";
 
       const role =
-        data.role ??
-        data.user_role ??
-        data.group ??
-        data.user?.role ??
+        data.role ||
+        data.user_role ||
+        data.group ||
+        data.user?.role ||
         data.user?.group;
 
-      if (!role) {
-        console.log("Backend Response:", data);
+      // Token must exist
+      if (!accessToken) {
+        console.log("Backend response:", data);
+
         alert(
-          "Login succeeded, but the server did not return the user's role. Please update the backend."
+          "Login successful, but access token was not received from the backend."
         );
+
         return;
       }
 
-      if (!accessToken) {
-        alert("Login successful, but token not received from backend.");
-        return;
-      }
+      /*
+       * Save authentication information.
+       */
 
       localStorage.setItem("access", accessToken);
       localStorage.setItem("access_token", accessToken);
@@ -121,21 +162,59 @@ function LoginPage() {
 
       if (refreshToken) {
         localStorage.setItem("refresh", refreshToken);
+        localStorage.setItem("refresh_token", refreshToken);
       }
 
-      localStorage.setItem("role", role);
-      localStorage.setItem("username", username);
+      localStorage.setItem("username", username.trim());
 
-      window.location.href = getRoleRedirectPath(role);
+      /*
+       * If backend sends role, save it.
+       */
+      if (role) {
+        localStorage.setItem("role", role);
+      }
+
+      /*
+       * Redirect according to role.
+       *
+       * If backend does not return role,
+       * dashboard is used as fallback.
+       */
+      const redirectPath = getRoleRedirectPath(role);
+
+      console.log("User role:", role);
+      console.log("Redirecting to:", redirectPath);
+
+      window.location.href = redirectPath;
     } catch (error) {
-      console.log("Login error", error);
+      console.error("Login error:", error);
 
-      const message =
+      /*
+       * Django usually returns:
+       *
+       * {
+       *   "detail": "No active account found with the given credentials"
+       * }
+       */
+
+      const backendMessage =
         error.response?.data?.detail ||
         error.response?.data?.message ||
-        "Invalid username or password";
+        error.response?.data?.error;
 
-      alert(message);
+      if (backendMessage) {
+        alert(backendMessage);
+      } else if (error.response) {
+        alert(
+          `Login failed. Server returned status ${error.response.status}.`
+        );
+      } else if (error.request) {
+        alert(
+          "Cannot connect to the backend server. Please check that the Render backend is running."
+        );
+      } else {
+        alert("Unable to login. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -150,13 +229,16 @@ function LoginPage() {
       onMouseUp={stopDrag}
       onMouseLeave={stopDrag}
     >
+      {/* ================= NAVBAR ================= */}
+
       <header className="smartdine-landing-nav">
         <div className="smartdine-nav-brand">
           <img
-              src={vkLogo}
-              alt="VK Logo"
-              className="smartdine-login-logo"
-            />
+            src={vkLogo}
+            alt="VK Logo"
+            className="smartdine-login-logo"
+          />
+
           <div>
             <h2>SmartDine Pro</h2>
             <p>Premium Restaurant Management</p>
@@ -179,9 +261,15 @@ function LoginPage() {
         </button>
       </header>
 
+      {/* ================= MAIN ================= */}
+
       <main className="smartdine-landing-main">
+
+        {/* ================= HERO ================= */}
+
         <section className="smartdine-hero-section">
           <div className="smartdine-hero-content">
+
             <span className="smartdine-mini-pill">
               Finally restaurant software that runs like it should
             </span>
@@ -195,17 +283,23 @@ function LoginPage() {
             </h1>
 
             <p>
-              Manage dining tables, kitchen orders, GST billing, inventory,
-              purchases, customers and daily reports from one elegant restaurant
-              control center.
+              Manage dining tables, kitchen orders, GST billing,
+              inventory, purchases, customers and daily reports
+              from one elegant restaurant control center.
             </p>
 
             <div className="smartdine-hero-actions">
-              <button type="button" onClick={scrollToLogin}>
+              <button
+                type="button"
+                onClick={scrollToLogin}
+              >
                 Login to Dashboard
               </button>
 
-              <button type="button" className="outline">
+              <button
+                type="button"
+                className="outline"
+              >
                 View Features
               </button>
             </div>
@@ -233,13 +327,19 @@ function LoginPage() {
             </div>
           </div>
 
-          <div className="smartdine-login-card" id="smartdine-login-card">
+          {/* ================= LOGIN CARD ================= */}
+
+          <div
+            className="smartdine-login-card"
+            id="smartdine-login-card"
+          >
             <div className="smartdine-card-top">
               <img
                 src={vkLogo}
                 alt="VK Logo"
                 className="smartdine-login-logo"
               />
+
               <div>
                 <h2>Welcome Back</h2>
                 <p>Login to SmartDine Pro</p>
@@ -247,48 +347,91 @@ function LoginPage() {
             </div>
 
             <form onSubmit={handleLogin}>
+
+              {/* USERNAME */}
+
               <div className="smartdine-field">
-                <label>Username</label>
+                <label htmlFor="username">
+                  Username
+                </label>
 
                 <input
+                  id="username"
                   type="text"
                   placeholder="Enter username"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) =>
+                    setUsername(e.target.value)
+                  }
+                  autoComplete="username"
+                  disabled={loading}
                 />
               </div>
 
+              {/* PASSWORD */}
+
               <div className="smartdine-field">
-                <label>Password</label>
+                <label htmlFor="password">
+                  Password
+                </label>
 
                 <div className="smartdine-password-row">
                   <input
-                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
                     placeholder="Enter password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) =>
+                      setPassword(e.target.value)
+                    }
+                    autoComplete="current-password"
+                    disabled={loading}
                   />
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() =>
+                      setShowPassword(
+                        !showPassword
+                      )
+                    }
+                    disabled={loading}
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
                 </div>
               </div>
 
-              <button className="smartdine-login-submit" disabled={loading}>
-                {loading ? "Signing in..." : "Login to Dashboard"}
+              {/* LOGIN BUTTON */}
+
+              <button
+                type="submit"
+                className="smartdine-login-submit"
+                disabled={loading}
+              >
+                {loading
+                  ? "Signing in..."
+                  : "Login to Dashboard"}
               </button>
             </form>
 
             <div className="smartdine-role-box">
-              <span>Role-based access enabled</span>
-              <strong>Admin / Manager / Waiter / Chef / Cashier</strong>
+              <span>
+                Role-based access enabled
+              </span>
+
+              <strong>
+                Admin / Manager / Waiter / Chef / Cashier
+              </strong>
             </div>
           </div>
         </section>
+
+        {/* ================= MARQUEE ================= */}
 
         <div className="smartdine-marquee">
           <span>Role-Based Access</span>
@@ -299,22 +442,28 @@ function LoginPage() {
           <span>Sales Reports</span>
         </div>
 
+        {/* ================= FEATURES ================= */}
+
         <section className="smartdine-section">
           <div className="smartdine-section-title">
             <span>Built for restaurants</span>
+
             <h2>
-              Not just another admin panel. <br />
+              Not just another admin panel.
+              <br />
               Built for daily restaurant workflow.
             </h2>
           </div>
 
           <div className="smartdine-feature-grid">
+
             <div className="smartdine-feature-card">
               <span>OD</span>
               <h3>Order Management</h3>
               <p>
-                Create table-wise orders, select menu items and send orders to
-                the kitchen workflow.
+                Create table-wise orders, select menu
+                items and send orders to the kitchen
+                workflow.
               </p>
             </div>
 
@@ -322,8 +471,9 @@ function LoginPage() {
               <span>KT</span>
               <h3>Kitchen Display</h3>
               <p>
-                Chef can move orders from Pending to Cooking and Ready with
-                clean queue visibility.
+                Chef can move orders from Pending to
+                Cooking and Ready with clean queue
+                visibility.
               </p>
             </div>
 
@@ -331,8 +481,9 @@ function LoginPage() {
               <span>BL</span>
               <h3>Billing Counter</h3>
               <p>
-                Generate GST bills, track payment method and make tables
-                available after billing.
+                Generate GST bills, track payment
+                method and make tables available
+                after billing.
               </p>
             </div>
 
@@ -340,8 +491,8 @@ function LoginPage() {
               <span>IN</span>
               <h3>Inventory Control</h3>
               <p>
-                Manage grocery items, purchase restock, recipes and low stock
-                alerts.
+                Manage grocery items, purchase restock,
+                recipes and low stock alerts.
               </p>
             </div>
 
@@ -349,8 +500,8 @@ function LoginPage() {
               <span>TB</span>
               <h3>Table Status</h3>
               <p>
-                Track Available, Occupied and Billing tables automatically from
-                order flow.
+                Track Available, Occupied and Billing
+                tables automatically from order flow.
               </p>
             </div>
 
@@ -358,78 +509,144 @@ function LoginPage() {
               <span>RP</span>
               <h3>Reports</h3>
               <p>
-                View daily sales, payment summary, GST, bills and revenue
-                reports.
+                View daily sales, payment summary,
+                GST, bills and revenue reports.
               </p>
             </div>
+
           </div>
         </section>
 
+        {/* ================= RESTAURANT FLOW ================= */}
+
         <section className="smartdine-menu-section">
-  <span className="smartdine-flow-badge">
-    <i className="ti ti-bolt"></i> Fast restaurant workflow
-  </span>
 
-  <div className="smartdine-flow-heading">
-    Your entire restaurant flow<br />in <span>one dashboard</span>
-  </div>
+          <span className="smartdine-flow-badge">
+            <i className="ti ti-bolt"></i>
+            Fast restaurant workflow
+          </span>
 
-  <p className="smartdine-flow-desc">
-    SmartDine Pro keeps waiter, kitchen, cashier and manager work
-    connected so your restaurant runs smoothly during rush hours.
-  </p>
+          <div className="smartdine-flow-heading">
+            Your entire restaurant flow
+            <br />
+            in <span>one dashboard</span>
+          </div>
 
-  <div className="smartdine-flow-checklist">
-    <div className="smartdine-flow-check-item">
-      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
-      <span>Waiter creates order</span>
-    </div>
-    <div className="smartdine-flow-check-item">
-      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
-      <span>Chef prepares and marks ready</span>
-    </div>
-    <div className="smartdine-flow-check-item">
-      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
-      <span>Cashier generates GST bill</span>
-    </div>
-    <div className="smartdine-flow-check-item">
-      <span className="smartdine-flow-check-icon"><i className="ti ti-check"></i></span>
-      <span>Inventory updates from purchases and recipes</span>
-    </div>
-  </div>
+          <p className="smartdine-flow-desc">
+            SmartDine Pro keeps waiter, kitchen,
+            cashier and manager work connected so your
+            restaurant runs smoothly during rush hours.
+          </p>
 
-  <div className="smartdine-flow-card">
-    <div><span>1</span><strong>Table order</strong></div>
-    <div><span>2</span><strong>Kitchen queue</strong></div>
-    <div><span>3</span><strong>Billing counter</strong></div>
-    <div><span>4</span><strong>Sales report</strong></div>
-  </div>
-</section>
+          <div className="smartdine-flow-checklist">
+
+            <div className="smartdine-flow-check-item">
+              <span className="smartdine-flow-check-icon">
+                <i className="ti ti-check"></i>
+              </span>
+
+              <span>Waiter creates order</span>
+            </div>
+
+            <div className="smartdine-flow-check-item">
+              <span className="smartdine-flow-check-icon">
+                <i className="ti ti-check"></i>
+              </span>
+
+              <span>
+                Chef prepares and marks ready
+              </span>
+            </div>
+
+            <div className="smartdine-flow-check-item">
+              <span className="smartdine-flow-check-icon">
+                <i className="ti ti-check"></i>
+              </span>
+
+              <span>
+                Cashier generates GST bill
+              </span>
+            </div>
+
+            <div className="smartdine-flow-check-item">
+              <span className="smartdine-flow-check-icon">
+                <i className="ti ti-check"></i>
+              </span>
+
+              <span>
+                Inventory updates from purchases
+                and recipes
+              </span>
+            </div>
+
+          </div>
+
+          <div className="smartdine-flow-card">
+
+            <div>
+              <span>1</span>
+              <strong>Table order</strong>
+            </div>
+
+            <div>
+              <span>2</span>
+              <strong>Kitchen queue</strong>
+            </div>
+
+            <div>
+              <span>3</span>
+              <strong>Billing counter</strong>
+            </div>
+
+            <div>
+              <span>4</span>
+              <strong>Sales report</strong>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ================= MODULES ================= */}
+
         <section className="smartdine-pricing-section">
+
           <div className="smartdine-section-title">
             <span>Software modules</span>
-            <h2>Simple. Professional. Ready for clients.</h2>
+
+            <h2>
+              Simple. Professional. Ready for clients.
+            </h2>
           </div>
 
           <div className="smartdine-module-grid">
+
             <div>
               <h3>Restaurant</h3>
-              <p>Orders, Kitchen, Billing, Tables, Customers</p>
+              <p>
+                Orders, Kitchen, Billing, Tables,
+                Customers
+              </p>
             </div>
 
             <div>
               <h3>Inventory</h3>
-              <p>Stock, Purchase, Recipe, Low Stock Alerts</p>
+              <p>
+                Stock, Purchase, Recipe,
+                Low Stock Alerts
+              </p>
             </div>
 
             <div>
               <h3>Reports</h3>
-              <p>Sales, GST, Payment Summary, Bill History</p>
+              <p>
+                Sales, GST, Payment Summary,
+                Bill History
+              </p>
             </div>
+
           </div>
         </section>
 
-       
       </main>
     </div>
   );
