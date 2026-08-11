@@ -376,6 +376,8 @@ TEMPLATES = [
 # Local development:
 # If DATABASE_URL is not available, SQLite will be used.
 
+import dj_database_url
+
 DATABASES = {
     "default": dj_database_url.config(
         env="DATABASE_URL",
