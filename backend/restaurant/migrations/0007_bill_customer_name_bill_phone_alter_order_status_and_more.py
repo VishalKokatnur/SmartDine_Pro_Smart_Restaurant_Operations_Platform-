@@ -31,3 +31,4 @@ class Migration(migrations.Migration):
             field=models.CharField(choices=[('Available', 'Available'), ('Reserved', 'Reserved'), ('Occupied', 'Occupied'), ('Billing', 'Billing'), ('Cleaning', 'Cleaning')], default='Available', max_length=20),
         ),
     ]
+

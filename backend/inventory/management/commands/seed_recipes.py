@@ -1,16 +1,19 @@
 from decimal import Decimal
 
 from django.core.management.base import BaseCommand
+from django.db import transaction
 
 from inventory.models import InventoryItem, RecipeItem
 from restaurant.models import MenuItem
 
 
 class Command(BaseCommand):
-    help = "Automatically create recipes for all menu items"
+    help = "Automatically create and synchronize recipes and required inventory items for all menu items"
 
     RECIPES = {
-        # ---------------- BREAKFAST ----------------
+        # ============================================================
+        # BREAKFAST
+        # ============================================================
 
         "Idli": [
             ("Rice", 0.20),
@@ -56,7 +59,9 @@ class Command(BaseCommand):
             ("Oil", 0.01),
         ],
 
-        # ---------------- STARTERS ----------------
+        # ============================================================
+        # STARTERS
+        # ============================================================
 
         "Paneer Tikka": [
             ("Paneer", 0.20),
@@ -101,7 +106,9 @@ class Command(BaseCommand):
             ("Oil", 0.02),
         ],
 
-        # ---------------- SOUPS ----------------
+        # ============================================================
+        # SOUPS
+        # ============================================================
 
         "Tomato Soup": [
             ("Tomato", 0.20),
@@ -124,7 +131,9 @@ class Command(BaseCommand):
             ("Milk", 0.10),
         ],
 
-        # ---------------- MAIN COURSE ----------------
+        # ============================================================
+        # MAIN COURSE
+        # ============================================================
 
         "Veg Biryani": [
             ("Rice", 0.30),
@@ -178,74 +187,405 @@ class Command(BaseCommand):
             ("Mutton", 0.30),
         ],
 
-        # ---------------- BREADS ----------------
+        # ============================================================
+        # BREADS
+        # ============================================================
 
-        "Butter Naan": [("Flour", 0.15), ("Butter", 0.02)],
-        "Garlic Naan": [("Flour", 0.15), ("Garlic", 0.01)],
-        "Tandoori Roti": [("Flour", 0.15)],
-        "Lachha Paratha": [("Flour", 0.18), ("Oil", 0.02)],
-        "Missi Roti": [("Flour", 0.15)],
-        "Kulcha": [("Flour", 0.15)],
+        "Butter Naan": [
+            ("Flour", 0.15),
+            ("Butter", 0.02),
+        ],
 
-        # ---------------- RICE ----------------
+        "Garlic Naan": [
+            ("Flour", 0.15),
+            ("Garlic", 0.01),
+        ],
 
-        "Jeera Rice": [("Rice", 0.25)],
-        "Steamed Rice": [("Rice", 0.25)],
-        "Veg Pulao": [("Rice", 0.25), ("Vegetables", 0.15)],
-        "Curd Rice": [("Rice", 0.25), ("Curd", 0.10)],
-        "Lemon Rice": [("Rice", 0.25), ("Lemon", 1)],
+        "Tandoori Roti": [
+            ("Flour", 0.15),
+        ],
 
-        # ---------------- DESSERTS ----------------
+        "Lachha Paratha": [
+            ("Flour", 0.18),
+            ("Oil", 0.02),
+        ],
 
-        "Gulab Jamun": [("Sugar", 0.05), ("Milk Powder", 0.10)],
-        "Brownie with Ice Cream": [("Chocolate", 0.10), ("Milk", 0.10)],
-        "Rasmalai": [("Milk", 0.25)],
-        "Gajar Halwa": [("Carrot", 0.20), ("Milk", 0.10)],
-        "Kheer": [("Milk", 0.20), ("Rice", 0.05)],
+        "Missi Roti": [
+            ("Flour", 0.15),
+        ],
 
-        # ---------------- DRINKS ----------------
+        "Kulcha": [
+            ("Flour", 0.15),
+        ],
 
-        "Fresh Lime Soda": [("Lemon", 1), ("Sugar", 0.02)],
-        "Cold Coffee": [("Milk", 0.20), ("Coffee Powder", 0.01), ("Sugar", 0.02)],
-        "Masala Tea": [("Tea Powder", 0.01), ("Milk", 0.10), ("Sugar", 0.02)],
-        "Mango Lassi": [("Curd", 0.20), ("Mango", 0.15)],
-        "Buttermilk": [("Curd", 0.20)],
-        "Filter Coffee": [("Coffee Powder", 0.01), ("Milk", 0.10)],
+        # ============================================================
+        # RICE
+        # ============================================================
+
+        "Jeera Rice": [
+            ("Rice", 0.25),
+        ],
+
+        "Steamed Rice": [
+            ("Rice", 0.25),
+        ],
+
+        "Veg Pulao": [
+            ("Rice", 0.25),
+            ("Vegetables", 0.15),
+        ],
+
+        "Curd Rice": [
+            ("Rice", 0.25),
+            ("Curd", 0.10),
+        ],
+
+        "Lemon Rice": [
+            ("Rice", 0.25),
+            ("Lemon", 1),
+        ],
+
+        # ============================================================
+        # DESSERTS
+        # ============================================================
+
+        "Gulab Jamun": [
+            ("Sugar", 0.05),
+            ("Milk Powder", 0.10),
+        ],
+
+        "Brownie with Ice Cream": [
+            ("Chocolate", 0.10),
+            ("Milk", 0.10),
+        ],
+
+        "Rasmalai": [
+            ("Milk", 0.25),
+        ],
+
+        "Gajar Halwa": [
+            ("Carrot", 0.20),
+            ("Milk", 0.10),
+        ],
+
+        "Kheer": [
+            ("Milk", 0.20),
+            ("Rice", 0.05),
+        ],
+
+        # ============================================================
+        # DRINKS
+        # ============================================================
+
+        "Fresh Lime Soda": [
+            ("Lemon", 1),
+            ("Sugar", 0.02),
+        ],
+
+        "Cold Coffee": [
+            ("Milk", 0.20),
+            ("Coffee Powder", 0.01),
+            ("Sugar", 0.02),
+        ],
+
+        "Masala Tea": [
+            ("Tea Powder", 0.01),
+            ("Milk", 0.10),
+            ("Sugar", 0.02),
+        ],
+
+        "Mango Lassi": [
+            ("Curd", 0.20),
+            ("Mango", 0.15),
+        ],
+
+        "Buttermilk": [
+            ("Curd", 0.20),
+        ],
+
+        "Filter Coffee": [
+            ("Coffee Powder", 0.01),
+            ("Milk", 0.10),
+        ],
+
+            # ============================================================
+    # ADDITIONAL MAIN COURSE / SPECIAL ITEMS
+    # ============================================================
+
+    "Veg Thali": [
+        ("Rice", 0.25),
+        ("Dal", 0.15),
+        ("Vegetables", 0.15),
+        ("Curd", 0.10),
+        ("Spices", 0.01),
+        ("Oil", 0.02),
+    ],
+
+    "Non-Veg Thali": [
+        ("Rice", 0.25),
+        ("Dal", 0.15),
+        ("Chicken", 0.20),
+        ("Vegetables", 0.10),
+        ("Curd", 0.10),
+        ("Spices", 0.01),
+        ("Oil", 0.02),
+    ],
+
+    "Rajma Chawal": [
+        ("Rice", 0.25),
+        ("Dal", 0.20),
+        ("Onion", 0.05),
+        ("Tomato", 0.05),
+        ("Spices", 0.01),
+        ("Oil", 0.02),
+    ],
+
+    "Kadhi Chawal": [
+        ("Rice", 0.25),
+        ("Curd", 0.20),
+        ("Spices", 0.01),
+        ("Oil", 0.02),
+    ],
+
+    "Chole Bhature": [
+        ("Chickpeas", 0.25),
+        ("Flour", 0.20),
+        ("Onion", 0.05),
+        ("Tomato", 0.05),
+        ("Spices", 0.01),
+        ("Oil", 0.03),
+    ],
+
+    "Tandoori Chicken": [
+        ("Chicken", 0.30),
+        ("Curd", 0.10),
+        ("Spices", 0.02),
+        ("Oil", 0.02),
+    ],
+
+    "Fish Curry": [
+        ("Fish", 0.25),
+        ("Tomato", 0.10),
+        ("Onion", 0.05),
+        ("Spices", 0.02),
+        ("Oil", 0.03),
+    ],
+
+    "Mutton Rogan Josh": [
+        ("Mutton", 0.30),
+        ("Onion", 0.05),
+        ("Tomato", 0.05),
+        ("Spices", 0.02),
+        ("Oil", 0.03),
+    ],
+
+    "Paneer Lababdar": [
+        ("Paneer", 0.25),
+        ("Tomato", 0.10),
+        ("Onion", 0.05),
+        ("Spices", 0.02),
+        ("Butter", 0.02),
+    ],
+
+    "Veg Kolhapuri": [
+        ("Vegetables", 0.25),
+        ("Tomato", 0.10),
+        ("Onion", 0.05),
+        ("Spices", 0.02),
+        ("Oil", 0.03),
+    ],
+
+    "Boast": [
+        ("Bread", 2),
+        ("Butter", 0.02),
+    ],
     }
 
     def handle(self, *args, **kwargs):
 
-        RecipeItem.objects.all().delete()
+        created_inventory = []
+        existing_inventory = []
+        created_recipes = []
+        updated_recipes = []
+        missing_menu_items = []
 
-        for menu_name, ingredients in self.RECIPES.items():
+        with transaction.atomic():
 
-            try:
-                menu = MenuItem.objects.get(name=menu_name)
-            except MenuItem.DoesNotExist:
-                self.stdout.write(f"Menu not found: {menu_name}")
-                continue
+            for menu_name, ingredients in self.RECIPES.items():
 
-            for ing_name, qty in ingredients:
+                # ----------------------------------------------------
+                # Find menu item
+                # ----------------------------------------------------
 
-                inventory = InventoryItem.objects.filter(name=ing_name).first()
+                menu = MenuItem.objects.filter(name=menu_name).first()
 
-                if not inventory:
-                    inventory = InventoryItem.objects.create(
-                        name=ing_name,
-                        category="General",
-                        quantity=100,
-                        unit="kg",
-                        low_stock_limit=10,
-                        vendor_name="Default Vendor",
-                        purchase_price=50,
+                if not menu:
+                    missing_menu_items.append(menu_name)
+
+                    self.stdout.write(
+                        self.style.WARNING(
+                            f"Menu item not found: {menu_name}"
+                        )
                     )
 
-                RecipeItem.objects.get_or_create(
-                    menu_item=menu,
-                    inventory_item=inventory,
-                    defaults={
-                        "quantity_used": Decimal(str(qty))
-                    },
+                    continue
+
+                # ----------------------------------------------------
+                # Process every ingredient
+                # ----------------------------------------------------
+
+                for ing_name, qty in ingredients:
+
+                    quantity_used = Decimal(str(qty))
+
+                    # ------------------------------------------------
+                    # Find existing inventory item
+                    # ------------------------------------------------
+
+                    inventory = InventoryItem.objects.filter(
+                        name=ing_name
+                    ).first()
+
+                    # ------------------------------------------------
+                    # Create inventory item ONLY if it doesn't exist
+                    # ------------------------------------------------
+
+                    if not inventory:
+
+                        inventory = InventoryItem.objects.create(
+                            name=ing_name,
+                            category="General",
+                            quantity=Decimal("100"),
+                            unit="kg",
+                            low_stock_limit=Decimal("10"),
+                            vendor_name="Default Vendor",
+                            purchase_price=Decimal("50"),
+                        )
+
+                        created_inventory.append(ing_name)
+
+                        self.stdout.write(
+                            self.style.SUCCESS(
+                                f"Inventory created: {ing_name}"
+                            )
+                        )
+
+                    else:
+
+                        existing_inventory.append(ing_name)
+
+                    # ------------------------------------------------
+                    # Create or update recipe
+                    #
+                    # IMPORTANT:
+                    # get_or_create alone does NOT update an existing
+                    # recipe quantity.
+                    # update_or_create keeps the recipe correct.
+                    # ------------------------------------------------
+
+                    recipe, created = RecipeItem.objects.update_or_create(
+                        menu_item=menu,
+                        inventory_item=inventory,
+                        defaults={
+                            "quantity_used": quantity_used
+                        },
+                    )
+
+                    if created:
+                        created_recipes.append(
+                            f"{menu_name} -> {ing_name}"
+                        )
+
+                    else:
+                        updated_recipes.append(
+                            f"{menu_name} -> {ing_name}"
+                        )
+
+        # ============================================================
+        # SUMMARY
+        # ============================================================
+
+        self.stdout.write("")
+        self.stdout.write(
+            self.style.SUCCESS(
+                "=============================================="
+            )
+        )
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                "SMARTDINE RECIPE + INVENTORY SYNC COMPLETED"
+            )
+        )
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                "=============================================="
+            )
+        )
+
+        self.stdout.write(
+            f"Inventory items created : {len(created_inventory)}"
+        )
+
+        self.stdout.write(
+            f"Recipes created         : {len(created_recipes)}"
+        )
+
+        self.stdout.write(
+            f"Recipes updated         : {len(updated_recipes)}"
+        )
+
+        self.stdout.write(
+            f"Menu items missing      : {len(missing_menu_items)}"
+        )
+
+        # ------------------------------------------------------------
+        # Show created inventory
+        # ------------------------------------------------------------
+
+        if created_inventory:
+
+            self.stdout.write("")
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "New inventory items:"
+                )
+            )
+
+            for name in created_inventory:
+                self.stdout.write(
+                    f"  + {name}"
                 )
 
-        self.stdout.write(self.style.SUCCESS("Recipes created successfully."))
+        # ------------------------------------------------------------
+        # Show missing menu items
+        # ------------------------------------------------------------
+
+        if missing_menu_items:
+
+            self.stdout.write("")
+            self.stdout.write(
+                self.style.WARNING(
+                    "Menu items not found in database:"
+                )
+            )
+
+            for name in missing_menu_items:
+                self.stdout.write(
+                    f"  - {name}"
+                )
+
+        self.stdout.write("")
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                "Existing inventory quantities were NOT reset."
+            )
+        )
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                "Existing recipes were NOT deleted."
+            )
+        )
