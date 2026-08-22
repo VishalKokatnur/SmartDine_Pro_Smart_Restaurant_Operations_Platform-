@@ -1,0 +1,54 @@
+.room-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.room-summary-card {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.room-summary-card h3 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.room-summary-card p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.room-summary-card.total h3 {
+  color: var(--primary);
+}
+
+.room-summary-card.available h3 {
+  color: #16a34a;
+}
+
+.room-summary-card.booked h3 {
+  color: #2563eb;
+}
+
+.room-summary-card.occupied h3 {
+  color: #dc2626;
+}
+
+/* Room floor card status colors (reuses .table-card base styles) */
+
+.table-card.booked {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.table-card.maintenance {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}

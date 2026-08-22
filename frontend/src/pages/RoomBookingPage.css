@@ -1,0 +1,148 @@
+.rb-form {
+  align-items: flex-end;
+}
+
+.rb-total-box {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px 12px;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.rb-total-box span {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.rb-total-box strong {
+  font-size: 16px;
+  color: var(--primary);
+}
+
+.rb-history-table td {
+  vertical-align: top;
+}
+
+.rb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rb-pay-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.rb-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rb-booked {
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
+.rb-checkedin {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+}
+
+.rb-checkedout {
+  background: rgba(100, 116, 139, 0.18);
+  color: #475569;
+}
+
+.rb-cancelled {
+  background: rgba(107, 114, 128, 0.15);
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.rb-paid {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+}
+
+.rb-partial {
+  background: rgba(245, 158, 11, 0.18);
+  color: #b45309;
+}
+
+.rb-unpaid {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+}
+
+.rb-pay-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.rb-pay-form label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.rb-pay-form input,
+.rb-pay-form select {
+  width: 100%;
+}
+
+
+.rb-bill-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.rb-bill-modal {
+  max-width: 480px;
+  width: 92%;
+}
+
+.rb-bill-summary {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.rb-bill-summary p {
+  margin: 4px 0;
+}
+
+.rb-bill-totals {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 3px 12px;
+  align-items: center;
+  padding: 10px 14px;
+  margin-top: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.rb-bill-totals span {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.rb-bill-totals strong {
+  font-size: 15px;
+  color: var(--primary);
+  text-align: right;
+}

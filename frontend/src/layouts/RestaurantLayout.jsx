@@ -48,6 +48,8 @@ function RestaurantLayout({ children }) {
       ["📅 Reservations", "/reservations"],
       ["⚠️ Low Stock", "/inventory/low-stock"],
       ["📷 Scan", "/scan-to-order"],
+      ["🛏 Rooms", "/rooms"],
+      ["🛎 Room Bookings", "/room-bookings"],
     ],
 
     Manager: [

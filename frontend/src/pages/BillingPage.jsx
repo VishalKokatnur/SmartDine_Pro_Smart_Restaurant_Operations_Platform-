@@ -6,7 +6,7 @@ import "./BillingPage.css";
 
 function BillingPage() {
   // ---- Configure your real UPI details here ----
-  const MERCHANT_UPI_ID = "smartdinepro@upi"; // <-- replace with your real UPI ID (e.g. yourname@okaxis)
+  const MERCHANT_UPI_ID = "7483251136@ybl"; // <-- replace with your real UPI ID (e.g. yourname@okaxis)
   const MERCHANT_NAME = "SmartDine Pro";
   // ------------------------------------------------
 
