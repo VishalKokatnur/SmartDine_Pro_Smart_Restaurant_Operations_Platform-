@@ -139,9 +139,36 @@ function RoomBookingPage() {
 
   // Rooms available to pick: currently Available, or the room already
   // attached to the booking being edited (so editing doesn't lose it).
+    // Rooms available to pick: any room that isn't flagged Maintenance/
+  // Cleaning (those are physically unusable regardless of dates), or the
+  // room already attached to the booking being edited (so editing doesn't
+  // lose it). A room showing "Booked"/"Occupied" overall can still have
+  // free dates for a NEW stay - the real date-clash check happens on
+  // submit (has_overlapping_booking on the backend), and the staff also
+  // gets a heads-up notice below the dropdown before they even try.
+  const UNAVAILABLE_ROOM_STATUSES = ["Maintenance", "Cleaning"];
+
   const availableRoomOptions = rooms.filter(
-    (r) => r.status === "Available" || String(r.id) === String(formData.room)
+    (r) =>
+      !UNAVAILABLE_ROOM_STATUSES.includes(r.status) ||
+      String(r.id) === String(formData.room)
   );
+
+  // Existing "Booked"/"Checked In" bookings for the currently selected
+  // room, so staff can see at a glance which dates are already taken
+  // before they even try to submit.
+  const selectedRoomActiveBookings = useMemo(() => {
+    if (!formData.room) return [];
+
+    return bookings
+      .filter(
+        (b) =>
+          String(b.room) === String(formData.room) &&
+          ["Booked", "Checked In"].includes(b.booking_status) &&
+          b.id !== editingId
+      )
+      .sort((a, b) => new Date(a.check_in_date) - new Date(b.check_in_date));
+  }, [bookings, formData.room, editingId]);
 
   const advanceAmount = Number(formData.amount_paid) || 0;
 
@@ -688,6 +715,33 @@ function RoomBookingPage() {
               ))}
             </select>
           </div>
+
+          {selectedRoomActiveBookings.length > 0 && (
+            <div
+              className="payment-info rb-room-booked-notice"
+              style={{ flex: "1 1 100%" }}
+            >
+              <p>
+                ⚠️ This room already has {selectedRoomActiveBookings.length}{" "}
+                active booking
+                {selectedRoomActiveBookings.length > 1 ? "s" : ""}:
+              </p>
+              <ul>
+                {selectedRoomActiveBookings.map((b) => (
+                  <li key={b.id}>
+                    {b.check_in_date}
+                    {b.check_in_time ? ` ${b.check_in_time}` : ""}
+                    {" → "}
+                    {b.check_out_date}
+                    {b.check_out_time ? ` ${b.check_out_time}` : ""}
+                    {" · "}
+                    {b.guest_name}
+                  </li>
+                ))}
+              </ul>
+              <p>Pick dates outside these ranges, or choose a different room.</p>
+            </div>
+          )}
 
           <div className="table-field">
             <label>Guest Name</label>

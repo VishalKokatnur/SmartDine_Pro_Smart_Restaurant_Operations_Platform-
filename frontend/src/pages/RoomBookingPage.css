@@ -146,3 +146,14 @@
   color: var(--primary);
   text-align: right;
 }
+
+
+.rb-room-booked-notice ul {
+  margin: 6px 0 8px;
+  padding-left: 20px;
+}
+
+.rb-room-booked-notice li {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
